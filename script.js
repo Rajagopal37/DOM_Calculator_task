@@ -16,10 +16,8 @@
 
  function Clear (){
    displayScreen.value = "";
-
  }
 
  function del (){
-   displayScreen.value = displayScreen.value.slice(0,-1)
-
+   displayScreen.value = displayScreen.value.slice(0,-1) 
  }
