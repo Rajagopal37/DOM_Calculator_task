@@ -14,7 +14,7 @@
    }
  }
 
- function Clear (){
+ function clear(){
    displayScreen.value = "";
  }
 
