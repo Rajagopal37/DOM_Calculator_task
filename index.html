@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <!-- <div class="container">
         <div class="calculator">
 
             <input type="text" placeholder="0" id="screenvalue">
 
-            <button onclick="clear()">CL</button>
+            <button onclick="Clear()">CL</button>
             <button onclick="del()">DE</button>
-            <button onclick="display('%')">%</button>
+            <button onclick="display('%'); Percentage()">%</button>
             <button onclick="calculate()">=</button>
             <button onclick="display('00')">00</button>
             <button onclick="display('.')">.</button>
@@ -23,7 +23,7 @@
             <button onclick="display('7')">7</button>
             <button onclick="display('8')">8</button>
             <button onclick="display('9')">9</button>
-            <button onclick="display('*')">X</button>
+            <button onclick="display('*')">*</button>
             <button onclick="display('4')">4</button>
             <button onclick="display('5')">5</button>
             <button onclick="display('6')">6</button>
@@ -33,9 +33,176 @@
             <button onclick="display('3')">3</button>
             <button onclick="display('+')">+</button>
         </div>
-    </div>
+    </div> -->
 
 
-    <script src="script.js"></script>
+
+    <script>     
+
+        let h1 = document.createElement("h1");
+        h1.setAttribute("id","title")
+        h1.innerText="CALCULATOR"
+        document.body.append(h1);
+
+        let container = document.createElement("div");
+        container.setAttribute("class","container");
+        document.body.append(container);
+
+        let calculator = document.createElement("div");
+        calculator.setAttribute("class","calculator")
+        container.append(calculator);
+
+
+        let input = document.createElement("input");
+        input.setAttribute("type","text");
+        input.setAttribute("placeholder","0");
+        input.setAttribute("id","result");
+        input.readOnly=true;
+        calculator.append(input);
+
+        let btn_clr = document.createElement("button");
+        btn_clr.setAttribute("id","clear");
+        btn_clr.innerText="CL";
+        btn_clr.addEventListener("click",Clear)
+        calculator.append(btn_clr);
+
+        let btn_del = document.createElement("button");
+        btn_del.innerText="DE";
+        btn_del.addEventListener("click",del)
+        calculator.append(btn_del);
+
+        let btn_per = document.createElement("button");
+        btn_per.innerText="%";
+        btn_per.addEventListener("click",Percentage)
+        calculator.append(btn_per);
+
+        let btn_cal = document.createElement("button");
+        btn_cal.setAttribute("id","equal")
+        btn_cal.innerText="=";
+        btn_cal.addEventListener("click",calculate)
+        calculator.append(btn_cal);
+
+        let btn_00 = document.createElement("button");
+        btn_00.innerText="00";
+        btn_00.addEventListener("click",()=>{display("00")})
+        calculator.append(btn_00);
+
+        let btn_dot = document.createElement("button");
+        btn_dot.innerText=".";
+        btn_dot.addEventListener("click",()=>{display(".")})
+        calculator.append(btn_dot);
+
+        let btn_0 = document.createElement("button");
+        btn_0.innerText="0";
+        btn_0.addEventListener("click",()=>{display("0")})
+        calculator.append(btn_0);
+        
+        let btn_divide = document.createElement("button");
+        btn_divide.innerText="/";
+        btn_divide.addEventListener("click",()=>{display("/")})
+        calculator.append(btn_divide);
+
+        let btn_7 = document.createElement("button");
+        btn_7.innerText="7";
+        btn_7.addEventListener("click",()=>{display("7")})
+        calculator.append(btn_7);
+
+        let btn_8 = document.createElement("button");
+        btn_8.innerText="8";
+        btn_8.addEventListener("click",()=>{display("8")})
+        calculator.append(btn_8);
+        
+        let btn_9 = document.createElement("button");
+        btn_9.innerText="9";
+        btn_9.addEventListener("click",()=>{display("9")})
+        calculator.append(btn_9);
+
+        let btn_multi = document.createElement("button");
+        btn_multi.innerText="*";
+        btn_multi.addEventListener("click",()=>{display("*")})
+        calculator.append(btn_multi);
+
+        let btn_4 = document.createElement("button");
+        btn_4.innerText="4";
+        btn_4.addEventListener("click",()=>{display('4')})
+        calculator.append(btn_4);
+
+        let btn_5 = document.createElement("button");
+        btn_5.innerText="5";
+        btn_5.addEventListener("click",()=>{display("5")})
+        calculator.append(btn_5);
+
+        let btn_6 = document.createElement("button");
+        btn_6.innerText="6";
+        btn_6.addEventListener("click",()=>{display('6')})
+        calculator.append(btn_6);
+
+        let btn_subtract = document.createElement("button");
+        btn_subtract.setAttribute("id","subtract");
+        btn_subtract.innerText="-";
+        btn_subtract.addEventListener("click",()=>{display('-')})
+        calculator.append(btn_subtract);
+
+        let btn_1 = document.createElement("button");
+        btn_1.setAttribute("id","1")
+        btn_1.innerText="1";
+        btn_1.addEventListener("click",()=>{display('1')})
+        calculator.append(btn_1);
+
+        let btn_2 = document.createElement("button");
+        btn_2.setAttribute("id","2")
+        btn_2.innerText="2";
+        btn_2.addEventListener("click",()=>{display('2')})
+        calculator.append(btn_2);
+
+        let btn_3 = document.createElement("button");
+        btn_3.setAttribute("id","3")
+        btn_3.innerText="3";
+        btn_3.addEventListener("click", ()=>{display('3')})
+        calculator.append(btn_3);
+
+        let btn_add = document.createElement("button");
+        btn_add.setAttribute("id","add")
+        btn_add.innerText="+";
+        btn_add.addEventListener("click",()=>{display('+')})
+        calculator.append(btn_add);
+
+        let displayScreen = document.getElementById("result");
+
+        function display(num){
+            displayScreen.value += num;
+        } 
+
+        function calculate( ) {
+            try{
+                displayScreen.value = eval(displayScreen.value)
+            }
+            catch(err)
+            {
+                alert("Invalit Input")
+            }
+        }
+
+        function Percentage(){
+            displayScreen.value = Number(displayScreen.value)/100
+        }
+
+        function Clear(){
+            displayScreen.value = "0";
+        }
+
+        function del (){
+        displayScreen.value = displayScreen.value.slice(0,-1) 
+        }
+
+        let p = document.createElement("p");
+        p.setAttribute("id","description")
+        p.innerText="In this task completed by document.createElement, innerText, addEventListener, append" 
+        document.body.append(p);
+
+    </script>
+
+    <script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js"></script>
+
 </body>
 </html>
